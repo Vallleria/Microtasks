@@ -26,7 +26,7 @@ import { Button } from './components/Button'
 //   { manufacturer: 'Audi', model: 'rs6' }
 // ]
 
-
+type FilterType = 'all' | 'dollar' | 'RUBLS'
 function App() {
 
 
@@ -78,7 +78,7 @@ function App() {
 
 
 
- const[filter, setFilter]= useState('all')
+ const[filter, setFilter]= useState<FilterType>('all')
 
   let currentMoney = money;
     if (filter === 'dollar') {
@@ -90,7 +90,7 @@ function App() {
 
 
 
-  const onClickFilterHundler = (nameButton: string) => {
+  const onClickFilterHundler = (nameButton: FilterType) => {
       setFilter(nameButton)
   }
 

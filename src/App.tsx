@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css'
 import { Button } from './components/Button'
+// import { NewComponentsFilter } from './components/NewComponentsFilter';
+import { type } from '@testing-library/user-event/dist/type';
 // import { Header } from './Site/Header'
 // import { Body } from './Site/Body'
 // import { Footer} from './Site/Footer';
 // import {NewComponents} from './NewComponents'
+import { NewComponentsFilter } from './components/NewComponentsFilter';
 
 
 
@@ -26,45 +29,11 @@ import { Button } from './components/Button'
 //   { manufacturer: 'Audi', model: 'rs6' }
 // ]
 
-type FilterType = 'all' | 'dollar' | 'RUBLS'
+export type FilterType = 'all' | 'Dollars' | 'RUBLS'
+
 function App() {
 
 
-
-  // const myFirstSubscribe = (event:MouseEvent) => {
-  //   console.log('Hellow Im Valeria')
-  // }
-  // const mySecondSubscribe = () => {
-  //   console.log('Hellow Im Dima')
-  // }
-
-
-  // const Button1Foo = (sub: string) => {
-  //   console.log(sub)
-  // }
-
-  // const Button2Foo = (sub: string) => {
-  //   console.log(sub)
-  // }
-
-  // const Button23Foo = () => {
-  //   console.log('Im stuped buuton')
-  // }
-
-
-  // let a =1
-  // let[a, setA] = useState(1)
-
-  // const onClickHundler = () => {
-  //   setA(++a)
-  //   console.log(a)
-
-  // }
-  // const onClickHundler1 = () => {
-  //   setA(0)
-  //   console.log(a)
-
-  // }
   const [money, setMoney] = useState([
     { banknots: 'Dollars', value: 100, number: ' a1234567890' },
     { banknots: 'Dollars', value: 50, number: ' z1234567890' },
@@ -76,28 +45,66 @@ function App() {
     { banknots: 'RUBLS', value: 50, number: ' v1234567890' },
   ])
 
+  // const [button, setBtn] = useState([
+  //   { name: 'all', callback: () => onClickFilterHundler('all') },
+  //   { name: 'Dollars',callback: () => onClickFilterHundler('Dollars')},
+  //   { name: 'RUBLS',callback: () => onClickFilterHundler('RUBLS')},
 
+  // ])
+  // const [button, callBack] = useState([
+  //   {
+  //     name: 'all',
+  //     callBack: () => { }
+  //   }
+  //   ,
+  //   {
+  //     name: 'Dollars',
+  //     callBack: () => { }
+  //   },
+  //   {
+  //     name: 'RUBLS',
 
- const[filter, setFilter]= useState<FilterType>('all')
+  //   },
+
+  // ])
+
+  //   const buttonAll= {
+  //     name:'all',
+  //     callback: () => {onClickFilterHundler('all')}
+  //   }
+  // const buttonDollars = {
+  //     name:'Dollars',
+  //     callback: () => {onClickFilterHundler('Dollars')}
+  //   }
+  //   const buttonRUBLS = {
+  //     name:'RUBLS',
+  //     callback: () => {onClickFilterHundler('RUBLS')}
+  //   }
+
+  const [filter, setFilter] = useState<FilterType>('all')
 
   let currentMoney = money;
-    if (filter === 'dollar') {
-      currentMoney = money.filter((filteredMoney) => filteredMoney.banknots === 'Dollars')
-    } if (filter === 'RUBLS') {
-      currentMoney = money.filter((filteredMoney) => filteredMoney.banknots === 'RUBLS')
-    }
-
-
-
-
-  const onClickFilterHundler = (nameButton: FilterType) => {
-      setFilter(nameButton)
+  if (filter === 'Dollars') {
+    currentMoney = money.filter((filteredMoney) => filteredMoney.banknots === 'Dollars')
+  } if (filter === 'RUBLS') {
+    currentMoney = money.filter((filteredMoney) => filteredMoney.banknots === 'RUBLS')
   }
+
+
+
+
+  const onClickFilterHundler = (nameButton: FilterType,) => {
+    setFilter(nameButton)
+  }
+
+
 
 
   return (
     <>
-      <ul>
+      <NewComponentsFilter money={currentMoney} onClickFilterHundler={onClickFilterHundler}/>
+
+      {/* <ul>
         {currentMoney.map((objFromMoney, index) => {
           return (
             <li key={index}>
@@ -112,7 +119,7 @@ function App() {
         <button onClick={() => onClickFilterHundler('all')}>All</button>
         <button onClick={() => onClickFilterHundler('RUBLS')}>ruble</button>
         <button onClick={() => onClickFilterHundler('dollar')}>dollar</button>
-      </div>
+      </div> */}
 
     </>
   );
@@ -165,3 +172,39 @@ export default App;
       <Body titleForBody={"New Body"}/>
       <Footer titleForFooter={"New Body"}/> */}
 
+
+
+      // const myFirstSubscribe = (event:MouseEvent) => {
+  //   console.log('Hellow Im Valeria')
+  // }
+  // const mySecondSubscribe = () => {
+  //   console.log('Hellow Im Dima')
+  // }
+
+
+  // const Button1Foo = (sub: string) => {
+  //   console.log(sub)
+  // }
+
+  // const Button2Foo = (sub: string) => {
+  //   console.log(sub)
+  // }
+
+  // const Button23Foo = () => {
+  //   console.log('Im stuped buuton')
+  // }
+
+
+  // let a =1
+  // let[a, setA] = useState(1)
+
+  // const onClickHundler = () => {
+  //   setA(++a)
+  //   console.log(a)
+
+  // }
+  // const onClickHundler1 = () => {
+  //   setA(0)
+  //   console.log(a)
+
+  // }
